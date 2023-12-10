@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .modal1 {
+    display: none; /* Modalı varsayılan olarak gizle */
+    position: fixed; /* Sabit konumda */
+    z-index: 1; /* Diğer elemanların üzerinde */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4); /* Arkaplan rengi ve opaklık */
+}
+
+.modal-content1 {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width:400px;
+}
+    </style>
+</head>
+<body>
+    <div id="myModal" class="modal1">
+        <div class="modal-content1">
+            <span class="close"  onclick="closeModal('myModal')">&times;</span>
+            <h2 style="text-align: center">Giriş Yap</h2>
+            <form class="login-form" onsubmit="checkCredentials(event)">
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label for="username" style="display: block; margin-bottom: 5px;">Kullanıcı Adı:</label>
+                    <input type="text" id="username" name="username" style="width: 100%; padding: 8px;">
+                </div>
+    
+                <div class="input-group" style="margin-bottom: 15px;">
+                    <label for="password" style="display: block; margin-bottom: 5px;">Şifre:</label>
+                    <input type="text" id="password" name="password" style="width: 100%; padding: 8px;">
+    
+                </div>
+                <div class="input-group">
+                    <input type="submit" value="Giriş Yap">
+                </div>
+            </form>
+            <label class="rememberme" for="rememberme"><input type="checkbox" id="rememberme"> Beni Hatırla</label>
+        </div>
+    </div>
+</div>
+<button  onclick="openModal('myModal')" type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Giriş Yap</button>
+<!-- <button onclick="openModal('myModal')">Giriş Yap</button> -->
+
+<script>
+    function openModal(modalId) {
+    var modal1 = document.getElementById(modalId);
+    if (modal1) {
+        modal1.style.display = 'block';
+    }
+}
+
+// kullanıcı giriş modalını kapama
+function closeModal(modalId) {
+    var modal1 = document.getElementById(modalId);
+    if (modal1) {
+        modal1.style.display = 'none';
+    }
+}
+
+//Admin paneline giriş fonksiyonu
+function checkCredentials(event) {
+    event.preventDefault(); // Formun otomatik olarak gönderilmesini engelle
+
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+
+    // Admin bilgileri burada kontrol edilecek
+    var adminMail = "admin@lumina.com";
+    var adminPassword = "admin123";
+
+    if (username === adminMail && password === adminPassword) {
+        window.location.href = "adminPanel.html"; // Yönlendirilecek sayfanın URL'si
+    } else {
+        alert("Hatalı giriş! Lütfen doğru bilgileri girin.");
+    }
+}
+</script>
+
+    
+</body>
+</html>
